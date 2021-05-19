@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <h3 class="center">Connection List</h3>
+        <%if(typeof data.t !== 'undefined' && data.t===1){%>
+            <h3 class="center">You are already subscribed to this connection!</h3>
+        <%}%>
+        <%if(typeof data.t !== 'undefined' && data.t===2){%>
+            <h3 class="center">Subscribed!</h3>
+        <%}%>
+
+
+
+            <table class="centerTable"><tr>
+                    <th class="tabsLI"><a href="#tabs1">Our streaming service</a></th>
+                <th class="tabsLI"><a href="#tabs2">Movie Recommendation</a></th>
+
+                </tr>
+                <tr>
+                    <td> <a href="/connection2">Subscribe to our Service</a></td>
+                     <td> <a href="/connection3">Subscribe to our recommendations</a></td>
+                </tr>
+                <tr>
+                    <td> <a href="/connection4">RSVP to streaming events</a></td>
+                    <td> <a href="/connection5">RSVP to Theatre Events</a></td>
+                </tr>
+
+                     <td> <a href="/connection6">Email List</a></td>
+                     <td> <a href="/connection7">Enter Raffle</a></td>
+                </tr>
+            </table><br><br>
+
+
+        <div class="centerTable">
+            <button type="button" class="button" onclick="window.location.href='http://127.0.0.1:8080/conn'">View All Your Created Connections</button><br><br>
+            <button type="button" class="button" onclick="window.location.href='http://127.0.0.1:8080/connection1'">View All of Your Subscriptions</button><br><br>
+
+            <h3 class="center">Search for Your Created Connection</h3>
+            <form action="/Connection1" method="post">
+                <label for="Name">Enter connection Name(case sensitive):</label><br>
+                <input type="text" id="Name" name="Name" value="<%= data.qs.Name %>"><br>
+                <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="centerTable">
+
+            <h3 class="center">Search for Your Subscriptions</h3>
+            <form action="/SearchSubs" method="post">
+                <label for="Name">Enter subscription Name(case sensitive):</label><br>
+                <input type="text" id="Name" name="Name" value="<%= data.qs.Name %>"><br>
+                <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[0] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[0].msg%></small></h3>
+        <%}%>
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>

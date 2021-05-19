@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+
+
+
+            <table class="centerTable"><tr>
+                    <th class="tabsLI"><a href="#tabs1">Rank Your Movies</a></th>
+                <th class="tabsLI"><a href="#tabs2">Movie Trivia</a></th>
+                <th class="tabsLI"><a href="#tabs3">Cinema News</a></th>
+                <th class="tabsLI"><a href="#tabs4">New Releases(2021)</a></th>
+                </tr>
+                <tr>
+                    <td> <a href="/connection1">Current Movie Rank</a></td>
+                     <td> <a href="/connection1">Explore Movie Trivia</a></td>
+                    <td> <a href="/connection1">News by Movie</a></td>
+                    <td> <a href="/connection1">New Releases 2022</a></td>
+                </tr>
+                <tr>
+                    <td> <a href="/connection1">Search Movies</a></td>
+                    <td> <a href="/connection1">Search Trivia by Movie</a></td>
+                    <td> <a href="/connection1">Acting News</a></td>
+                    <td> <a href="/connection1">New Releases 2020</a></td>
+                </tr>
+
+                     <td> <a href="/connection1">List Movies</a></td>
+                     <td> <a href="/connection1">My Movie Trivia</a></td>
+                <td> <a href="/connection1">Random Movie News</a></td>
+                <td> <a href="/connection1">Pre-production Projects</a></td>
+                </tr>
+            </table><br><br>
+
+        <div class="centerTable">
+            <button type="button" class="button" onclick="window.location.href='http://127.0.0.1:8080/connection1'">View Saved Connections</button><br><br>
+            <form action="/Connection1" method="post">
+                <p>Search for Connection</p>
+                <label for="connectionID">Connection ID:</label><br>
+                <input type="number" id="connectionID" name="connectionID" placeholder="1" value="<%= qs.connectionID %>"><br>
+                <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>

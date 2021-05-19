@@ -1,0 +1,257 @@
+//LINE 155-257 CONTAIN THE INFORMATION ON REINITIALIZING THE DATABASE. MOREOVER THE LOGIN CREDINTIALS WILL BE 'bmlucas' AND 'passsword'
+
+                    //mongoose code design examined closer..
+
+                    UserInfo.find({connectionID: "connect", ConnectionType: "Subscribe to our Service" }, function(err, result) {
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log("Connection was found")
+                                            let data = {
+                                                "r": req.session,
+                                                "p": result,
+                                                qs: req.query
+                                            }
+                                            res.render('Connection2', {data: data});
+                                        }
+                                    })//The above code simply searches one of the database's models, UserInfo, and looks for
+                                     //documents with the following two objects saved to it, connectionID and ConnectionType.
+                    //------------------------------------------------------------------------------------------------------------------------------------------------
+                    UserInfo.exists({ConnectionType: req.body.ConnectionType, connectionID: req.session.username, RSVP: 'yes'}, function (err, result) {
+                                        if (result === true) {
+                                            var t = 1;
+                                            var data={
+                                                "t": t,
+                                                qs: req.query,
+                                                "r": req.session
+                                            }
+                                            res.render('Connections', {data: data});
+                                        } else if(result === false) {
+                                            console.log("found");
+
+                                            const temp = new UserInfo({ connectionID: req.session.username, RSVP: "yes", ConnectionType: req.body.ConnectionType, Name: req.body.Name, Details: req.body.Details, When: req.body.When, Where: req.body.Where });
+                                            temp.save(function (err, temp) {
+                                                if (err) return console.error(err);
+                                                console.log(temp);
+                                            });
+
+                                            var t = 2;
+                                            var data={
+                                                "t": t,
+                                                qs: req.query,
+                                                "r": req.session
+                                            }
+                                            res.render('Connections', {data: data});
+                                        }
+                                    });//The above code finds out if ConnectionType, connectionID, and RSVP objects exist in the database with the
+                                       //specific values input from the user. If the result of the 'exists' process is returned as true then data will
+                                       //be sent to the Connections page to be displayed, or help in functionality. If the result is false then new user data is added to the
+                                       //UserInfo model. Finally data is sent to the Connections webpage that acknowledge a change has happened to the DB.
+                                //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                                Users.exists({userID: req.session.username}, function(err, result) {
+                                        if (result === false) {
+                                            console.log("Does not exist");
+                                            res.redirect('/updateDeleteAccount');
+                                        }
+                                        if (result === true) {
+                                            Users.find({ userID : req.session.username}, function(err, result) {
+                                                if (err) {
+                                                    console.log(err);
+                                                } else {
+                                                    Users.deleteOne({userID: req.session.username}, function (err) {
+                                                        if (err) console.log(err);
+                                                        console.log("Successful deletion of user");
+                                                    })
+                                                    UserInfo.deleteMany({connectionID: req.session.username}, function (err) {
+                                                        if (err) console.log(err);
+                                                        console.log("Successful deletion of user information");
+                                                    })
+
+
+                                                    res.redirect('/logOut');
+                                                }
+                                            })
+                                        }
+                                    })//The above code searches the User model of the data base where the userId equals the session Id (username)
+                                    //If false then there is no user to update and the page redirects to the /updateDeleteAccount URL.
+                                    //If the result is true (meaning the username exists) then the documents with this specific username (value for user Account information) will be deleted from the User model and
+                                    //documents with a specific Connection ID ( holding all of the user connections) will be deleted.
+                                    //Finally, the site will redirect to the /login URL, where the session will be destroyed. In essence the account is deleted completely.
+                           //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                           UserInfo.exists({ Name: req.body.Name }, function(err, result) {
+                                   if (result === false) {
+                                       console.log("Exists?:" + result)
+                                       res.redirect('/updateDelete');
+                                   }
+
+                                   if (result === true) {
+                                       console.log("Exists?:" + result)
+
+                                       const doc1 = UserInfo.findOne({connectionID: req.session.username, Name: req.body.Name, RSVP: 'Yes'}, function (err, result) {
+                                           if (err) {
+                                               console.log(err);
+                                           } else {
+                                               //res.send(result);
+                                           }
+                                       });
+                                       const update1 = {ConnectionType: req.body.ConnectionType};
+                                       doc1.updateOne(update1);
+
+                                       const doc2 = UserInfo.findOne({connectionID: req.session.username, Name: req.body.Name, RSVP: 'Yes'}, function (err, result) {
+                                           if (err) {
+                                               console.log(err);
+                                           } else {
+                                               //res.send(result);
+                                           }
+                                       });
+                                       const update2 = {Details: req.body.Details};
+                                       doc2.updateOne(update2);
+
+                                       const doc3 = UserInfo.findOne({connectionID: req.session.username, Name: req.body.Name, RSVP: 'Yes'}, function (err, result) {
+                                           if (err) {
+                                               console.log(err);
+                                           } else {
+                                               //res.send(result);
+                                           }
+                                       });
+                                       const update3 = {Where: req.body.Where};
+                                       doc3.updateOne(update3);
+
+                                       const doc4 = UserInfo.findOne({connectionID: req.session.username, Name: req.body.Name, RSVP: 'Yes'}, function (err, result) {
+                                           if (err) {
+                                               console.log(err);
+                                           } else {
+                                               //res.send(result);
+                                           }
+                                       });
+                                       const update4 = {When: req.body.When};
+                                       doc4.updateOne(update4);
+                                   }
+                                   var t = 2
+                                   //res.send(result[8].director);
+                                   let data = {
+                                       "r": req.session,
+                                       "t": t,
+                                       "result": result
+                                   }
+                                   //console.log(data);
+                                   res.render('connection', {data: data});
+
+                               })//The above code put simply, checks that the name entered by the user exists in the database' UserInfo model.
+                               //If it does not exist the page will redirect to the /UpdateDelete URL. However, if the name exists then the code will
+                               //take all of the user input from a form (this is all contained in a post request)and update the individual objects, ConnectionType,
+                               //Details, Where, and When that are saved to a specific document with the following objects and values saved, connectionID, Name, and RSVP.
+                               //After this the page is redirected ti the connection page to display the updated information.
+                      //---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                        All of the other DB code in my application is similar to the functionalities shown above.
+                        //end
+
+
+
+                 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                 //Bellow is the code to delete everything then run the next section code to return to intial state.
+
+                                             UserInfo.deleteMany({connectionID: 'connect'}, function (err) {
+                                                     if (err) console.log(err);
+                                                     console.log("Successful deletion of Initial Connections");
+                                                 })//Use this to delete the loaded connections
+
+                                                 UserInfo.deleteMany({connectionID: req.session.username}, function (err) {
+                                                     if (err) console.log(err);
+                                                     console.log("Successful deletion of user connections");
+                                                 })//Use this to delete the user created connections
+
+                                                 Users.deleteOne({connectionID: req.session.username}, function (err) {
+                                                     if (err) console.log(err);
+                                                     console.log("Successful deletion of user");
+                                                 })
+                                                 //Use this to delete the users (Only one that exists)
+                                              //Alternatively, you can delete accounts, and all of the users saved connections in the, 'Your Account'->'Account Settings' section
+                                              //just under the signed in username.
+                                       //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+                        //code for adding data a user and 6 connections per the instructions of th instructor. Once this isrun the data base will be loaded with connections and a single user. This will reset the database back to its original state.
+                        const temp = new UserInfo({ connectionID: "connect", RSVP: "",ConnectionType: "Subscribe to our Service", Name: "MovieScope+", Details: "Subscribe to our streaming service.", When: "05/08/2021", Where: "N/A" });
+                            temp.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp);
+                            });
+
+                            const temp1 = new UserInfo({ connectionID: "connect", RSVP: "", ConnectionType: "RSVP to streaming events", Name: "RSVP for streaming Events", Details: "Subscribe to our streaming events.", When: "05/08/2021", Where: "N/A" });
+                            temp1.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp1);
+                            });
+
+                            const temp2 = new UserInfo({ connectionID: "connect", RSVP: "", ConnectionType: "Email List", Name: "Email List", Details: "Subscribe for our Email List.", When: "05/08/2021", Where: "N/A" });
+                            temp2.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp2);
+                            });
+
+                            const temp3 = new UserInfo({ connectionID: "connect", RSVP: "", ConnectionType: "Subscribe to our recommendations", Name: "Recommendations", Details: "Subscribe for movie recommendations.", When: "05/08/2021", Where: "N/A" });
+                            temp3.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp3);
+                            });
+
+                            const temp4 = new UserInfo({ connectionID: "connect", RSVP: "", ConnectionType: "RSVP to Theatre Events", Name: "RSVP to Theatre Events", Details: "Subscribe for theatre event news.", When: "05/08/2021", Where: "N/A" });
+                            temp4.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp4);
+                            });
+
+                            const temp5 = new UserInfo({ connectionID: "connect", RSVP: "", ConnectionType: "Enter Raffle", Name: "Raffle", Details: "Feel free to sign up for our raffle.", When: "05/08/2021", Where: "N/A" });
+                            temp5.save(function (err, temp) {
+                                if (err) return console.error(err);
+                                console.log(temp5);
+                            });
+
+
+
+                                        const user = new Users({ userID: "bmlucas", password: "password", firstN: "Brett", lastN: "Lucas", email: "blucas17@uncc.edu" });
+                                            user.save(function (err, temp) {
+                                                if (err) return console.error(err);
+                                                console.log(user);
+                                            });
+                            //end
+                   //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                            //The following code is for data base creation, as well as the objects the data base will hold. I called my database 'users'
+                            const mongoose = require('mongoose');
+                                        mongoose.connect('mongodb://localhost/users', {useNewUrlParser: true, useUnifiedTopology: true});
+
+                                        const db = mongoose.connection;
+                                        db.on('error', console.error.bind(console, 'connection error:'));
+                                        db.once('open', function() {
+                                            console.log("Connected to Mongoose!");
+                                            const userSchema = new mongoose.Schema({
+                                                userID: String,
+                                                password: String,
+                                                firstN: String,
+                                                lastN: String,
+                                                email: String
+                                            });
+                                            const Users = mongoose.model('Users', userSchema);
+
+                                            const userInfoSchema = new mongoose.Schema({
+                                                connectionID: String,
+                                                RSVP: String,
+                                                ConnectionType: String,
+                                                Name: String,
+                                                Details: String,
+                                                Where: String,
+                                                When: String
+                                            });
+
+
+                                            const UserInfo = mongoose.model('UserInfo', userInfoSchema);
+                                            });
+                                            //end
+
+

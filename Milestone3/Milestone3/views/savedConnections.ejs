@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+
+        <table class="SCtable">
+            <tr>
+                <th>Subscriptions</th>
+                <th>Subscribe Date</th>
+                <th>Unsubscribe Date</th>
+                <th colspan="2">Options</th>
+            </tr>
+            <tr>
+                <td>Cinema Wins</td>
+                <td>02/10/2021</td>
+                <td>N/A</td>
+                <td><button class="button" onclick="changeURLUpd()">Update</button></td>
+                <td><button class="button" onclick="changeURLDel()">Unsubscribe</button></td>
+            </tr>
+            <tr>
+                <td>TimesMovies</td>
+                <td>01/06/2020</td>
+                <td>01/10/2021</td>
+                <td><button class="button" type="reset" onclick="window.location.href='/savedConnections';">Update</button></td>
+                <td><button class="button" type="reset" onclick="changeURLDel()">Unsubscribe</button></td>
+            </tr>
+        </table>
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>

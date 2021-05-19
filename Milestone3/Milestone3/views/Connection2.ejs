@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <h3 class="center">Events</h3>
+        <%for(let j=0; j < data.p.length; j++){%>
+        <div>
+            <table class="centerTable">
+                <tr>
+                    <th>
+                        <div class="centerTable">
+                            <div class="myForm">
+                                <img class="centerPic" src="assets/images/FinlLogo.PNG" alt="MoviScope"><br>
+
+
+                                    <p>For: <%= data.p[j].ConnectionType %></p>
+                                    <p>Name: <%= data.p[j].Name %></p>
+                                    <p>Details: <%= data.p[j].Details %></p>
+                                    <p>Where: <%= data.p[j].Where %></p>
+                                    <p>When: <%= data.p[j].When %></p>
+
+                            </div>
+                        </div>
+                    </th>
+            </table>
+        </div>
+
+
+
+        <div class="center">
+            <form action="/Subscribe" method="post">
+                <input type="hidden" id="ConnectionType" name="ConnectionType" value="<%=data.p[j].ConnectionType%>"><br>
+                <input type="hidden" id="Name" name="Name" value="<%=data.p[j].Name%>"><br>
+                <input type="hidden" id="Details" name="Details" value="<%=data.p[j].Details%>"><br>
+                <input type="hidden" id="Where" name="Where" value="<%=data.p[j].Where%>"><br>
+                <input type="hidden" id="When" name="When" value="<%=data.p[j].When%>"><br>
+                <input class="button" type="submit" value="Subscribe To Event">
+            </form>
+        </div><br>
+    </div>
+    <%}%>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

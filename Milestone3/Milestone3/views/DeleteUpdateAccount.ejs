@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <%if (typeof data.qs !== 'undefined'){%>
+        <h2 class="center">Delete Account</h2>
+
+        <form class="centerPostForm" action='/deleteAccount' method="post">
+            <label for="userID">Delete Account?</label><br>
+
+            <input class="button" type="submit" value="yes">
+        </form><br>
+
+            <h2 class="center">Update Account Information</h2>
+            <form class="centerPostForm" action="/updateAccount" method="post">
+                <label for="password">password:</label><br>
+                <input type="password" id="password" name="password" value="<%= data.qs.password%>" placeholder="password"><br>
+                <label for="firstN">First Name:</label><br>
+                <input type="text" id="firstN" name="firstN" value="<%= data.qs.firstN%>" placeholder="Brett"><br>
+                <label for="lastN">Last Name:</label><br>
+                <input type="text" id="lastN" name="lastN" value="<%= data.qs.lastN%>" placeholder="Lucas"><br>
+                <label for="lastN">email:</label><br>
+                <input type="email" id="email" name="email" value="<%= data.qs.email%>" placeholder="bmlucas@uncc.edu"><br>
+
+                <input class="button" type="submit" value="Submit">
+            </form>
+            <%console.log(data.errors)%>
+            <%if(typeof data.errors !== 'undefined' && typeof data.errors[0] !== 'undefined'){%>
+            <h3 class="error"><small>*There is an error, <%=data.errors[0].msg%></small></h3>
+            <%}%>
+            <%if(typeof data.errors !== 'undefined' && typeof data.errors[1] !== 'undefined'){%>
+            <h3 class="error"><small>*There is an error, <%=data.errors[1].msg%></small></h3>
+            <%}%>
+            <%if(typeof data.errors !== 'undefined' && typeof data.errors[2] !== 'undefined'){%>
+            <h3 class="error"><small>*There is an error, <%=data.errors[2].msg%></small></h3>
+            <%}%>
+            <%if(typeof data.errors !== 'undefined' && typeof data.errors[3] !== 'undefined'){%>
+            <h3 class="error"><small>*There is an error, <%=data.errors[3].msg%></small></h3>
+            <%}%>
+            <%if(typeof data.errors !== 'undefined' && typeof data.errors[4] !== 'undefined'){%>
+            <h3 class="error"><small>*There is an error, <%=data.errors[4].msg%></small></h3>
+            <%}%>
+            <%}%>
+
+        <%if (typeof data.v !== 'undefined' && data.v === 1){%>
+
+        <h3 class="center">You updated the following account: <%=data.r.username%></h3>
+        <table class="centerTable">
+            <tr>
+                <th>
+                    <div class="centerTable">
+                        <div class="myForm">
+                                <p>First Name: <%= data.u.firstN %></p>
+                                <p>Last Name: <%= data.u.lastN %></p>
+                                <p>Email: <%= data.u.email %></p>
+                        </div>
+                    </div>
+                </th>
+        </table>
+
+            <%}%>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

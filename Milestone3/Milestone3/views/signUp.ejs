@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <%- include('partials/nav.ejs') %>
+    <div id="content">
+        <img class="menuLogo2" src="assets/images/FinlLogo.PNG" alt="MovieScope"><br>
+        <h3 class="centerTable">Please Create an account</h3><br>
+
+
+        <form class="centerPostForm" action="/c" method="post">
+            <label for="userID">Username:</label><br>
+            <input type="text" id="userID" name="userID" value="<%= data.qs.userID%>" placeholder="bmlucas"><br>
+            <label for="password">password:</label><br>
+            <input type="password" id="password" name="password" value="<%= data.qs.password%>" placeholder="password"><br>
+            <label for="firstN">First Name:</label><br>
+            <input type="text" id="firstN" name="firstN" value="<%= data.qs.firstN%>" placeholder="Brett"><br>
+            <label for="lastN">Last Name:</label><br>
+            <input type="text" id="lastN" name="lastN" value="<%= data.qs.lastN%>" placeholder="Lucas"><br>
+            <label for="email">email:</label><br>
+            <input type="text" id="email" name="email" value="<%= data.qs.email%>" placeholder="bmlucas@uncc.edu"><br>
+
+            <input class="button" type="submit" value="Submit">
+        </form>
+
+        <%console.log(data.errors)%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[0] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[0].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[1] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[1].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[2] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[2].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[3] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[3].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[4] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[4].msg%></small></h3>
+        <%}%>
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

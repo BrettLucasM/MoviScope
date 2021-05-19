@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <%- include('partials/nav.ejs') %>
+    <div id="content">
+        <img class="menuLogo2" src="assets/images/FinlLogo.PNG" alt="MovieScope"><br>
+        <h3 class="centerTable">Login!</h3><br>
+
+        <form class="centerPostForm" action="/newConnection1" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" value=""><br>
+            <label for="password">password:</label><br>
+            <input type="text" id="password" name="password" value=""><br>
+            <input class="button" type="submit" value="Submit">
+        </form>
+
+       <p class="centerTable">Dont have an account?<a href="/sighnup"> Sign Up.</a></p>
+
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

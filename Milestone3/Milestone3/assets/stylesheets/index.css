@@ -1,0 +1,284 @@
+body {
+    background-color: coral;
+    margin: 0;
+}
+
+#content {
+    min-height: calc(100vh - 90px);
+}
+
+.footer {
+    position: static;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 100%;
+    height: 90px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.footer table {
+    width: auto;
+    margin: auto;
+    color: white;
+    text-align: center;
+    border-spacing: 2cm 0em;
+}
+
+.footer th {
+    height: 25px;
+    color: white;
+}
+
+.menu{
+    background-color: black;
+}
+
+.menuLogo{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    float: left;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    height: 80px;
+}
+li {
+    float: right;
+    width: 190px;
+    height: 80px;
+}
+
+.menuList {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+}
+
+.LogoMenuList {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+.highlight {
+    background-color: coral;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.menu) {
+    background-color: #787878;
+}
+
+.MovieOTW{
+    width: 300px;
+    height: 300px;
+    object-fit: fill;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    color: coral;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: medium;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.intro{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+hr{
+    width: 88%;
+}
+
+.FLogo{
+    width: 220px;
+    height: 90px;
+    object-fit: fill;
+}
+
+#tabs ul{
+    background-color: coral;
+    color: black;
+    border: none;
+}
+
+#tabs{
+    background-color: coral;
+    color: black;
+    border: none;
+}
+
+#tabs a{
+    color: black;
+}
+
+#tabs ul li{
+    background-color: coral;
+    color: black;
+    border: solid black 3px;
+}
+
+#tabs ul li{
+    background-color: coral;
+    color: black;
+    border: solid black 3px;
+}
+
+.myForm{
+    background-color: coral;
+    text-align: center;
+    padding: 1em 2em;
+    border: 3px solid black;
+    max-width: 200px;
+    margin: auto;
+}
+.button{
+    background-color: black;
+    color: coral;
+}
+.centerPic{
+    text-align: center;
+    width: 150px;
+    height: 150px;
+}
+
+.userHighlight{
+    color: coral;
+    display: block;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+}
+.SCtable th, td {
+    padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.SCtable{
+    margin-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.menuConnect{
+    background-color: black;
+    height: 45px;
+    text-align: center;
+    color: coral;
+}
+
+.menuConnectli {
+    color: coral;
+    float: left;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: medium;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menuConnectliUser{
+    color: coral;
+    float: right;
+    padding-left: 15px;
+    padding-top: 0px;
+    font-size: medium;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+select{
+    background: black;
+    color: coral;
+    border: none;
+}
+
+#welcome{
+    float: right;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+#mainMenu{
+    background-color: black;
+}
+
+.menuHR{
+    width: 99%;
+}
+
+.tabsLI{
+    color: black;
+    width: auto;
+    height: auto;
+}
+
+#allEvents{
+    background-color: coral;
+    color: black;
+    border: none;
+}
+
+.centerTable{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menuLogo2{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    background-color: black;
+
+}
+
+.centerPostForm{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black 3px;
+    width: 250px;
+
+}
+
+.error{
+    color: red;
+    text-align: center;
+}
+

@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <h3 class="center">Events</h3>
+                <table class="centerTable">
+                    <tr>
+                        <%for(let j=0; j < 4; j++){%>
+                        <th>
+                            <div class="myForm">
+                                <img class="centerPic" src="assets/images/FinlLogo.PNG" alt="MoviScope"><br>
+
+                                    <p>Connection ID:<%= data.connection[j].connectionID %></p>
+                                    <p>Topic: <%= data.connection[j].topic %></p>
+                                    <p>Director: <%= data.connection[j].director %></p>
+                                    <p>Movie: <%= data.connection[j].movie %></p>
+                                    <p>Score: <%= data.connection[j].score %></p>
+                                    <p>Review: <%= data.connection[j].review %></p>
+                            </div>
+                        </th>
+                            <% }%>
+                    </tr>
+                            <tr>
+                                <%for(let j=4; j < data.connection.length; j++){%>
+                                <td>
+                                        <div class="myForm">
+                                            <img class="centerPic" src="assets/images/FinlLogo.PNG" alt="MoviScope"><br>
+
+                                            <p>Connection ID:<%= data.connection[j].connectionID %></p>
+                                            <p>Topic: <%= data.connection[j].topic %></p>
+                                            <p>Director: <%= data.connection[j].director %></p>
+                                            <p>Movie: <%= data.connection[j].movie %></p>
+                                            <p>Score: <%= data.connection[j].score %></p>
+                                            <p>Review: <%= data.connection[j].review %></p>
+                                    </div>
+                                </td>
+                                    <% }%>
+                            </tr>
+                </table>
+
+
+
+
+        <div class="center">
+            <p><em>Would You Like to Subscribe?</em></p>
+            <button type="reset" class="button" onclick="changeURL()">Yes</button>
+            <button type="reset" class="button" onclick="changeURL()">No</button>
+        </div><br>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

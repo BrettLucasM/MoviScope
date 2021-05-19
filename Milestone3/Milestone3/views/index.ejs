@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <h2 class="center">Welcome to MovieScope!</h2>
+
+        <h3 class="center">We are your informational window to new movie trivia, news, releases, and user guided ranking. Please look around and explore our site.</h3>
+        <table class="intro">
+            <tr>
+                <th class="left"><h3>Sign up and vote on your favorite movies. <br>Today's movie of the week: <br><em>Dawn of the Planet of the Apes!</em></h3></th>
+                <th class="right"><img id="POTa" class="MovieOTW" src="../assets/images/POTa.jpg" alt="POTA"></th>
+            </tr>
+        </table>
+
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>

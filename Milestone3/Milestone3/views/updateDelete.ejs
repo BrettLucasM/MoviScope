@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <%if(typeof data.i !== 'undefined'&& data.i ===1){%>
+        <h2 class="center">Delete Connection</h2>
+        <form class="centerPostForm" action="/delete" method="post">
+            <label for="Name">Name:</label><br>
+            <input type="text" id="Name" name="Name" value="<%= data.qs.name %>"><br>
+
+            <input class="button" type="submit" value="Submit">
+        </form><br>
+
+        <h2 class="center">Update Connection</h2>
+        <form class="centerPostForm" action="/update" method="post">
+
+            <label for="ConnectionType">For:</label><br>
+            <input type="text" id="ConnectionType" name="ConnectionType" value="<%= data.qs.ConnectionType %>"><br>
+            <label for="Name">Connection Name (case sensitive):</label><br>
+            <input type="text" id="Name" name="Name" value="<%= data.qs.Name %>"><br>
+            <label for="Details">Details:</label><br>
+            <input type="text" id="Details" name="Details" value="<%= data.qs.Details %>"><br>
+            <label for="Where">Where:</label><br>
+            <input type="text" id="Where" name="Where" value="<%= data.qs.Where %>"><br>
+            <label for="When">When:</label><br>
+            <input type="date" id="When" name="When" value="<%= data.qs.When %>"><br>
+
+            <input class="button" type="submit" value="Submit">
+        </form>
+        <%}%>
+
+        <%if(typeof data.i !== 'undefined'&& data.i ===2){%>
+            <h2 class="center">Unsubscribe</h2>
+        <form class="centerPostForm" action="/unsubscribe1" method="post">
+            <label for="Name">Name:</label><br>
+            <input type="text" id="Name" name="Name" value="<%= data.qs.name %>"><br>
+
+            <input class="button" type="submit" value="Unsubscribe">
+        </form><br>
+        <%}%>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

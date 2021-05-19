@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %>
+        <h3 class="center">Events</h3>
+        <div>
+            <table class="centerTable">
+                <tr>
+                    <th>
+                        <div class="centerTable">
+                            <div class="myForm">
+                                <img class="centerPic" src="assets/images/FinlLogo.PNG" alt="MoviScope"><br>
+                                <%for(let j=0; j < data.c.length; j++){%>
+                                <%if(data.c[j].connectionID == data.r.connectionID) {%>
+                                    <%var val1 = data.c[j].connectionID; var val2 = data.r.connectionID;%>
+                                <%}else{%>
+                                <%console.log("New ID Found")%>
+                                <%}%>
+                                <%}%>
+
+                                <%if(val1 = val2) {%>
+                                    <p>Already Created This Event!</p>
+                                <%console.log("ID in use")%>
+                                <%}else{%>
+                                    <p>Connection ID:<%= data.r.connectionID %></p>
+                                    <p>Director: <%= data.r.director %></p>
+                                    <p>Movie: <%= data.r.movie %></p>
+                                    <p>Score: <%= data.r.score %></p>
+                                    <p>Review: <%= data.r.review %></p>
+                                <%}%>
+                                <%  data.j.push(data.r.connectionID, data.r.director, data.r.movie, data.r.score, data.r.review); console.log(data.j);%>
+                            </div>
+                        </div>
+                    </th>
+            </table>
+        </div>
+
+
+        <div class="center">
+            <p><em>Would You Like to Subscribe?</em></p>
+            <button type="reset" class="button" onclick="changeURL()">Yes</button>
+            <button type="reset" class="button" onclick="changeURL()">No</button>
+        </div><br>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

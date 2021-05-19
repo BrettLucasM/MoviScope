@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+    <%- include('partials/nav.ejs') %>
+
+        <h3 class="center">Start A New Connection</h3>
+    <form class="centerPostForm" action="/newConnection1" method="post">
+        <label for="ConnectionType">Connection Type:</label><br>
+        <input type="text" id="ConnectionType" name="ConnectionType" value="<%= data.qs.ConnectionType %>"><br>
+        <label for="Name">Connection Name:</label><br>
+        <input type="text" id="Name" name="Name" value="<%= data.qs.Name %>"><br>
+        <label for="Details">Details:</label><br>
+        <input type="text" id="Details" name="Details" value="<%= data.qs.Details %>"><br>
+        <label for="Where">Where:</label><br>
+        <input type="text" id="Where" name="Where" value="<%= data.qs.Where %>"><br>
+        <label for="When">When:</label><br>
+        <input type="date" id="When" name="When" value="<%= data.qs.When %>"><br>
+
+        <input class="button" type="submit" value="Submit">
+    </form>
+        <%console.log(data.errors)%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[0] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[0].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[1] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[1].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[2] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[2].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[3] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[3].msg%></small></h3>
+        <%}%>
+        <%if(typeof data.errors !== 'undefined' && typeof data.errors[4] !== 'undefined'){%>
+        <h3 class="error"><small>*There is an error, <%=data.errors[4].msg%></small></h3>
+        <%}%>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
+
+</body>

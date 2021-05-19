@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <title>MovieScope</title><!--Title of each individual page-->
+    <%- include('partials/header.ejs') %> <!--includes the header page from the partials directory-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+
+</head>
+
+<body>
+<main>
+    <div id="content">
+        <%- include('partials/nav.ejs') %><!--includes the nav page from the partials directory-->
+        <%if(typeof data.y !== 'undefined'&& data.y ===2){%><!--if y ===2 then display message-->
+        <h1 class="center">Your Created Connections</h1>
+        <%}%>
+
+        <%if(typeof data.y !== 'undefined'&& data.y ===1){%><!--if y ===1 then display message-->
+            <h1 class="center">Your Subscriptions</h1>
+        <%}%>
+
+        <table class="centerTable">
+            <%if(typeof data.t !== 'undefined'&& data.t ===100){%><!--if t ===100 then display message-->
+                <h3 class="center">Unsubscribed!</h3>
+            <%}%>
+            <%if(typeof data.t !== 'undefined'&& data.t ===1){%><!--if t ===1 then display message-->
+            <h3 class="center">One Connection Deleted</h3>
+            <%}%>
+                <%if(typeof data.t !== 'undefined'&& data.t ===2){%><!--if t ===2 then display message-->
+                    <h3 class="center">One Connection Updated</h3>
+                <%}%>
+            <tr>
+                <%for(let j=0; j < data.result.length; j++){%><!--loop through the the result document listing all of the saved data-->
+                    <th>
+                        <div class="myForm">
+                            <img class="centerPic" src="assets/images/FinlLogo.PNG" alt="MoviScope"><br>
+                            <p>For: <%=data.result[j].ConnectionType%></p>
+                            <p>Name: <%= data.result[j].Name %></p>
+                            <p>Details: <%= data.result[j].Details %></p>
+                            <p>Where: <%= data.result[j].Where %></p>
+                            <p>When: <%= data.result[j].When %></p>
+                        </div>
+                    </th>
+                <% } %>
+            </tr>
+        </table>
+        <%if(typeof data.y !== 'undefined'&& data.y ===1){%>
+        <div class="center">
+            <h3><em>Would you like to change your Subscriptions?</em></h3>
+            <button type="reset" class="button" onclick="document.location='/unsubscribe'">Yes</button><!--Allows users to unsubscribe for the current document-->
+        </div><br>
+        <%}%>
+
+        <%if(typeof data.y !== 'undefined'&& data.y ===2){%>
+            <div class="center">
+                <h3><em>Would you like to change your Connections?</em></h3>
+                <button type="reset" class="button" onclick="document.location='/updateDelete'">Yes</button><!--Allows users to delete or update for the current document-->
+            </div><br>
+        <%}%>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %> <!--includes the footer page from the partials directory-->
+
+</body>
